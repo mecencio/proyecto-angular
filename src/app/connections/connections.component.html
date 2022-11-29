@@ -1,0 +1,9 @@
+<div class="accordion accordion-flush" id="accordionPrincipal">
+    <h5 class="text-center py-3">Ultimos usuarios</h5>
+    <ul class="list-group list-group-flush">
+        <li *ngFor="let persona of personas" class="list-group-item border border-0">
+            <p [ngClass]="persona.estado == 'Conectado' ? 'text-success mb-0' : 'text-danger mb-0' ">{{persona.nombre}} <span *ngIf="persona.estado == 'Conectado'"> - Conectado</span></p>
+            <p [style.font-size]="'10px'">Ultima conexión: {{persona.ultimaConexion | date : 'cccc'}}</p>
+        </li>
+    </ul>
+</div>
