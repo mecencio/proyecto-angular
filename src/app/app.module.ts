@@ -6,6 +6,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { StudentsComponent } from './students/students.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ConnectionsComponent } from './connections/connections.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './forms/register/register.component';
 
 @NgModule({
   declarations: [
@@ -13,10 +15,12 @@ import { ConnectionsComponent } from './connections/connections.component';
     NavbarComponent,
     StudentsComponent,
     ToolbarComponent,
-    ConnectionsComponent
+    ConnectionsComponent,
+    RegisterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
