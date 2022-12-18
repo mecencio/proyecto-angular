@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './forms/register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './modules/material.module';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     StudentsComponent,
     ToolbarComponent,
     ConnectionsComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

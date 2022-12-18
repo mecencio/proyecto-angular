@@ -47,6 +47,6 @@
             <input type="password" placeholder="Repetí tu contraseña" formControlName="password2" class="form-control" [ngClass]="(formularioRegistro.get('password2')?.invalid && formularioRegistro.get('password2')?.touched)? 'is-invalid' : ''">
             <label for="password2">Repeti tu contraseña</label>
         </div>
-        <button type="submit" class="btn btn-outline-primary m-3 mt-2 p-2 rounded shadow">Enviar</button>
+        <button type="submit" mat-stroked-button color="primary">Enviar</button>
     </form>
 </section>
