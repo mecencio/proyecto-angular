@@ -1,0 +1,13 @@
+<h1 mat-dialog-title class="text-uppercase text-center" appTitlesStyle>{{titleDialog}}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="navbarForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input type="text" formControlName="title" matInput>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button color="primary" mat-button [mat-dialog-close]="navbarForm.value">Guardar</button>
+    <button color="warn" mat-button (click)="close()">Cancelar</button>
+</div>
