@@ -21,7 +21,6 @@ export class NavbarDialogComponent {
     private form : FormBuilder
   ) {
       data.titleValue && (this.titleValue = data.titleValue);
-      data.titleDialog && (this.titleDialog = data.titleDialog);
   }
 
   ngOnInit(): void {

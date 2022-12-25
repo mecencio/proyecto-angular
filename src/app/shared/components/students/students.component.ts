@@ -43,7 +43,7 @@ export class StudentsComponent implements OnInit {
   editStudent(student : Student) {
     const dialog = this.dialogService.open(StudentDialogComponent, {
       width: '50vw',
-      data: {studentValue: student, titleDialog: 'Agregar estudiante'}
+      data: {studentValue: student, titleDialog: 'Editar estudiante'}
     })
 
     dialog.afterClosed().subscribe((value) => {

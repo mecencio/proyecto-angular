@@ -19,7 +19,6 @@ export class StudentDialogComponent {
     private form : FormBuilder
   ) {
       data.studentValue && (this.studentValue = data.studentValue);
-      data.titleDialog && (this.titleDialog = data.titleDialog);
   }
 
   ngOnInit(): void {
