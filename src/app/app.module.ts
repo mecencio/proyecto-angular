@@ -13,6 +13,7 @@ import { NavbarDialogComponent } from './shared/components/navbar-dialog/navbar-
 import { StudentDialogComponent } from './shared/components/student-dialog/student-dialog.component';
 import { FullNamePipe } from './shared/pipes/full-name/full-name.pipe';
 import { TitlesStyleDirective } from './shared/directives/titles-style/titles-style.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TitlesStyleDirective } from './shared/directives/titles-style/titles-st
     ReactiveFormsModule,
     NgbModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

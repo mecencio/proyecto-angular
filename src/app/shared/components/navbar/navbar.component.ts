@@ -3,6 +3,7 @@ import { Category } from '../../models/category.model';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogRef } from '@angular/cdk/dialog';
 import { NavbarDialogComponent } from '../navbar-dialog/navbar-dialog.component';
+import { CategoriesService } from '../../services/categories/categories.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,17 +12,19 @@ import { NavbarDialogComponent } from '../navbar-dialog/navbar-dialog.component'
 })
 export class NavbarComponent implements OnInit {
 
-  public categories : Category[] = [
-    new Category (1, "Programación", ["Desarrollo web", "Javascript", "React Js", "Programación Backend", "Python", "Angular"]),
-    new Category (2, "Diseño", ["Photoshop e Illustrator", "Diseño UX/UI", "Diseño UX/UI Avanzado", "UX Writing", "UX Research"]),
-    new Category (3, "Data", ["Data Analytics", "Data Science", "Procesamiento de datos en Excel", "Tableau", "R"]),
-  ];
+  public categories : Category[];
 
   panelOpenState = false;
 
-  constructor(private readonly dialogService: MatDialog) { }
+  constructor(
+    private readonly dialogService: MatDialog,
+    private service: CategoriesService,
+  ) { }
 
   ngOnInit(): void {
+    this.service.getCategories().subscribe((categories) => {
+      this.categories = categories;
+    })
   }
 
   addCategory() {

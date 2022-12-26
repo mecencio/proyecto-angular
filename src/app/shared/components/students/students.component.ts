@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Student } from '../../models/student.model';
+import { StudentService } from '../../services/student/student.service';
 import { StudentDialogComponent } from '../student-dialog/student-dialog.component';
 
 @Component({
@@ -10,17 +11,20 @@ import { StudentDialogComponent } from '../student-dialog/student-dialog.compone
 })
 export class StudentsComponent implements OnInit {
 
-  public students : Student[] = [
-    new Student (1, 'Juan', 'Perez', 'jperez', 'jperez@mail.com', true),
-    new Student (2, 'Marta', 'Sanchez', 'msanchez', 'msanchez@mail.com', false),
-    new Student (3, 'Carlos', 'Lopez', 'clopez', 'clopez@mail.com', true),
-  ]
+  public students : Student[]
 
   displayedColumns = ['id', 'name', 'isActive', 'edit', 'delete'];
 
-  constructor(private readonly dialogService: MatDialog) { }
+  constructor(
+    private readonly dialogService: MatDialog,
+    private service: StudentService,
+    ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.service.getStudents().subscribe((students) => {
+      this.students = students
+    })
+  }
 
   addStudent() {
     const dialog = this.dialogService.open(StudentDialogComponent, {
