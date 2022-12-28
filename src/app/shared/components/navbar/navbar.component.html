@@ -3,7 +3,7 @@
         <h2 class="text-center mt-3" id="headingOne">
             Cursos
         </h2>
-        <div class="d-flex justify-content-center" *ngIf="categories?false:true">
+        <div class="d-flex justify-content-center" *ngIf="!categories">
             <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>

@@ -10,18 +10,22 @@
             <input type="text" formControlName="lastName" matInput>
         </mat-form-field>
         <mat-form-field appearance="fill">
+            <mat-label>Edad</mat-label>
+            <input type="text" formControlName="age" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
             <mat-label>usuario</mat-label>
             <input type="text" formControlName="user" matInput>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
-            <input type="text" formControlName="email" matInput>
+            <input type="text" formControlName="mail" matInput>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>¿Está activo?</mat-label>
             <select formControlName="isActive" matNativeControl required>
                 <option value="true">Si</option>
-                <option value="">No</option>
+                <option value="false">No</option>
             </select>
         </mat-form-field>
     </form>

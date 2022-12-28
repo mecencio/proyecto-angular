@@ -2,6 +2,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Student } from '../../models/student.model';
 
 @Component({
   selector: 'app-student-dialog',
@@ -11,7 +12,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class StudentDialogComponent {
   public studentForm: FormGroup;
   public titleDialog : String;
-  public studentValue : String;
+  public studentValue : Student;
 
   constructor(
     private readonly dialogRef : DialogRef, 
@@ -26,7 +27,8 @@ export class StudentDialogComponent {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       user: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      age: ['', [Validators.required]],
+      mail: ['', [Validators.required, Validators.email]],
       isActive: []
     })
     this.studentForm.patchValue(this.studentValue)
