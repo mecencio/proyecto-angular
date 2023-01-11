@@ -7,7 +7,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [],
@@ -22,6 +25,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     MatExpansionModule,
     MatDialogModule,
+    MatRadioModule,
+    MatSidenavModule,
+    MatListModule,
+    MatCardModule
   ]
 })
 

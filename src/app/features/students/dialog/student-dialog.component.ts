@@ -1,8 +1,8 @@
+import { Student } from '../../../core/models/user.model';
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Student } from '../../models/student.model';
 
 @Component({
   selector: 'app-student-dialog',
@@ -26,10 +26,17 @@ export class StudentDialogComponent {
     this.studentForm = this.form.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      province: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       user: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
       age: ['', [Validators.required]],
-      mail: ['', [Validators.required, Validators.email]],
-      isActive: []
+      isActive: [true]
     })
     this.studentForm.patchValue(this.studentValue)
   }

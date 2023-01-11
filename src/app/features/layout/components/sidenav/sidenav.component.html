@@ -1,0 +1,46 @@
+<div class="d-flex flex-column">
+    <app-toolbar [menu]="sidenav"></app-toolbar>
+    <mat-sidenav-container>
+        <mat-sidenav>
+            <mat-nav-list>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <mat-icon>dropdown</mat-icon>
+                                <p>Secciones</p>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="d-flex flex-column">
+                            <a routerLink="/students" routerLinkActive="is-active" class="text-dark fs-6 p-2 text-decoration-none">
+                                Estudiantes
+                            </a>
+                            <a routerLink="" routerLinkActive="is-active" class="text-dark fs-6 p-2 text-decoration-none">
+                                Categorias
+                            </a>
+                            <a routerLink="" routerLinkActive="is-active" class="text-dark fs-6 p-2 text-decoration-none">
+                                Usuarios
+                            </a>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <a mat-list-item>
+                    <mat-icon>login </mat-icon>
+                    <span>Ingresar</span>
+                </a>
+                <a mat-list-item>
+                    <mat-icon>person</mat-icon>
+                    <span>Registrarse</span>
+                </a>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div>
+                <div style="height: 72vh;">
+                    <router-outlet></router-outlet>
+                </div>
+                <app-footer></app-footer>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

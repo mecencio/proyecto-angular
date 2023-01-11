@@ -1,7 +1,6 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Category } from '../../models/category.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
