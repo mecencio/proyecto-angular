@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { collectionData, Firestore } from '@angular/fire/firestore';
+import { addDoc, collectionData, Firestore } from '@angular/fire/firestore';
 import { User } from 'src/app/core/models/user.model';
 import { collection, where, query } from '@firebase/firestore';
 
@@ -8,10 +8,14 @@ import { collection, where, query } from '@firebase/firestore';
   providedIn: 'root'
 })
 export class UsersService {
-
   constructor(private firestore: Firestore) { }
 
-  public getUsers(user : string): Observable<any> {
+  public addUser(user : User) : void {
+    const userCollection = collection(this.firestore, 'users');
+    addDoc(userCollection, {...user});
+  }
+
+  public getUser(user : string): Observable<any> {
     const usersCollection = collection(this.firestore, 'users');
     const q = query(usersCollection, where('user', '==', user))
     return collectionData(q, {idField: 'id'}) as Observable<any>;

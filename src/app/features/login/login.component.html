@@ -12,9 +12,13 @@
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                     <mat-label>Contraseña</mat-label>
-                    <input type="password" formControlName="password" matInput>
+                    <input [type]="hide ? 'password' : 'text'" formControlName="password" matInput>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
                 </mat-form-field>
                 <button mat-stroked-button color="primary" (click)="onSubmit()">Ingresar</button>
+                <a routerLink="/register" class="text-center mt-3">Crear cuenta</a>
             </form>
         </div>
     </div>

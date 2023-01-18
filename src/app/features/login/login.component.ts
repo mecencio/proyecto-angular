@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit, OnDestroy {
   public loginForm : FormGroup;
   public error : string = '';
+  public hide : boolean = true;
   private loginFormSubscription : Subscription;
 
   constructor (
@@ -22,7 +23,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    this.loginFormSubscription.unsubscribe();
+    if (this.loginFormSubscription != null) {
+      this.loginFormSubscription.unsubscribe();
+    }
   }
 
   ngOnInit(): void {
@@ -33,9 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    console.log(this.loginForm.value.user)
-    console.log(this.loginForm.value.password)
-    this.loginFormSubscription = this.usersService.getUsers(this.loginForm.value.user).subscribe(data => {
+    this.loginFormSubscription = this.usersService.getUser(this.loginForm.value.user).subscribe(data => {
       if ((data.length == 1) && (data[0].password == this.loginForm.value.password)) {
         localStorage.setItem('user', JSON.stringify(this.loginForm.value));
         this.router.navigate(['']);
