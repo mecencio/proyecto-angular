@@ -99,6 +99,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "proyecto-angular:build:production",
+            "firebaseProject": "angular-students-page",
+            "firebaseHostingSite": "angular-students-page"
+          }
         }
       }
     }

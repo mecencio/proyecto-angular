@@ -1,4 +1,4 @@
-import { Student } from './../../core/models/user.model';
+import { Student } from '../../core/models/student.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';

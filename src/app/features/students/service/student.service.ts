@@ -1,7 +1,6 @@
-import { Student } from '../../../core/models/user.model';
-import { HttpClient } from '@angular/common/http';
+import { Student } from '../../../core/models/student.model';
 import { Injectable } from '@angular/core';
-import { map, count, lastValueFrom, Observable, of, from } from 'rxjs';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

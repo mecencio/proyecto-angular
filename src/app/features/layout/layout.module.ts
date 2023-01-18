@@ -1,3 +1,4 @@
+import { HomeComponent } from './../home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MaterialModule } from './../../shared/modules/material.module';
 import { RouterModule } from '@angular/router';
@@ -13,6 +14,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     ToolbarComponent,
     SidenavComponent,
     FooterComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

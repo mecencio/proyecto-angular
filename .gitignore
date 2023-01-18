@@ -43,3 +43,7 @@ Thumbs.db
 
 # Componentes en desuso
 /src/app/shared/components/forms
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

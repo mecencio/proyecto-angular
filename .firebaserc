@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "angular-students-page"
+  },
+  "targets": {
+    "angular-students-page": {
+      "hosting": {
+        "proyecto-angular": [
+          "angular-students-page"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

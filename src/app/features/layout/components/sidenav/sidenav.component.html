@@ -24,14 +24,22 @@
                         </div>
                     </mat-expansion-panel>
                 </mat-accordion>
-                <a mat-list-item>
-                    <mat-icon>login </mat-icon>
-                    <span>Ingresar</span>
-                </a>
-                <a mat-list-item>
-                    <mat-icon>person</mat-icon>
-                    <span>Registrarse</span>
-                </a>
+                <div *ngIf="!this.loggedIn">
+                    <a mat-list-item>
+                        <mat-icon>login </mat-icon>
+                        <a routerLink="/login" class="text-dark fs-6 p-2 text-decoration-none">Ingresar</a>
+                    </a>
+                    <a mat-list-item>
+                        <mat-icon>person</mat-icon>
+                        <span>Registrarse</span>
+                    </a>
+                </div>
+                <div *ngIf="this.loggedIn">
+                    <a mat-list-item>
+                        <mat-icon>logout </mat-icon>
+                        <a (click)="this.logout()" class="text-dark fs-6 p-2 text-decoration-none">Cerrar sesión</a>
+                    </a>
+                </div>
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>

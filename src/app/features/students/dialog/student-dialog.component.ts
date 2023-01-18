@@ -1,4 +1,4 @@
-import { Student } from '../../../core/models/user.model';
+import { Student } from '../../../core/models/student.model';
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

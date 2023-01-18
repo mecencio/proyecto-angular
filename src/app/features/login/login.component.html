@@ -1,0 +1,21 @@
+<div class="login-background">
+    <div class="container d-flex flex-column bg-white rounded border shadow position-absolute top-50 start-50 translate-middle p-5">
+        <h1 mat-dialog-title class="text-uppercase text-center" appTitlesStyle>Ingresar</h1>
+        <div *ngIf="this.error" class="alert alert-danger m-2">
+            <p>{{this.error}}</p>
+        </div>
+        <div mat-dialog-content class="container">
+            <form [formGroup]="loginForm" class="d-flex flex-column">
+                <mat-form-field appearance="fill">
+                    <mat-label>usuario</mat-label>
+                    <input type="text" formControlName="user" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Contraseña</mat-label>
+                    <input type="password" formControlName="password" matInput>
+                </mat-form-field>
+                <button mat-stroked-button color="primary" (click)="onSubmit()">Ingresar</button>
+            </form>
+        </div>
+    </div>
+</div>

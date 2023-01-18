@@ -7,7 +7,6 @@ import { StudentDialogComponent } from './dialog/student-dialog.component';
 import { FullNamePipe } from './../../shared/pipes/full-name/full-name.pipe';
 import { MaterialModule } from './../../shared/modules/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -17,9 +16,8 @@ import { RouterModule } from '@angular/router';
     FullNamePipe
   ],
   imports: [
-    RouterModule,
-    MaterialModule,
     CommonModule,
+    MaterialModule,
     StudentsRoutingModule,
     ReactiveFormsModule,
   ]

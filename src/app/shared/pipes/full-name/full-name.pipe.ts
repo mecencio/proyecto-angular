@@ -1,4 +1,4 @@
-import { Student } from './../../../core/models/user.model';
+import { Student } from '../../../core/models/student.model';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

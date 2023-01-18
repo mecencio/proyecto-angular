@@ -1,13 +1,14 @@
-import { HomeModule } from './features/home/home.module';
-import { StudentsModule } from './features/students/students.module';
+import { LayoutModule } from './features/layout/layout.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { RoutingModule } from './app-routing.module';
-import { LayoutModule } from './features/layout/layout.module'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -15,13 +16,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     BrowserModule,
-    NgbModule,
     RoutingModule,
+    NgbModule,
     BrowserAnimationsModule,
-    LayoutModule,
     HttpClientModule,
-    StudentsModule,
-    HomeModule
+    LayoutModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]
