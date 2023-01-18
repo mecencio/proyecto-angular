@@ -7,13 +7,17 @@ import { StudentDialogComponent } from './dialog/student-dialog.component';
 import { FullNamePipe } from './../../shared/pipes/full-name/full-name.pipe';
 import { MaterialModule } from './../../shared/modules/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StudentDetailComponent } from './pages/student-detail/student-detail.component';
+import { StudentDashboardComponent } from './pages/student-dashboard/student-dashboard.component';
 
 
 @NgModule({
   declarations: [
     StudentsComponent,
     StudentDialogComponent,
-    FullNamePipe
+    FullNamePipe,
+    StudentDetailComponent,
+    StudentDashboardComponent
   ],
   imports: [
     CommonModule,
