@@ -14,6 +14,7 @@ export class Student {
     phone: string;
     isActive: boolean;
     age : number;
+    courses : string[];
 
     constructor(user: any) {
         this.id = user.id;
@@ -30,6 +31,7 @@ export class Student {
         this.phone = user.phone;
         this.isActive = user.isActive;
         this.age = user.age;
+        this.courses = user.courses;
     }
 
 }

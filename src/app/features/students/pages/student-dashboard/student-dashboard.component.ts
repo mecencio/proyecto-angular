@@ -18,7 +18,7 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
   private dialogSubscriptionAddStudent : Subscription;
   private dialogSubscriptionEditStudent : Subscription;
 
-  displayedColumns = ['id', 'name', 'isActive','detail', 'edit', 'delete'];
+  displayedColumns = ['name', 'isActive','detail', 'edit', 'delete'];
 
   constructor(
     private readonly dialogService: MatDialog,
@@ -26,7 +26,7 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
-    this.getStudent();
+    this.getStudents();
   }
 
   ngOnDestroy(): void {
@@ -47,9 +47,9 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  public getStudent() {
+  public getStudents() {
     this.studentSubscription = this.studentService.getStudents().subscribe((student) => {
-      this.students.push(student)
+      this.students = student;
     });
   }
 

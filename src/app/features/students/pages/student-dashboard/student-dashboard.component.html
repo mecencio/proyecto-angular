@@ -1,17 +1,12 @@
 <div class="container">
     <h2 class="text-center text-uppercase mt-3 mb-0">Administración de usuarios</h2>
-    <div class="d-flex justify-content-center" *ngIf="!students">
+    <div class="d-flex justify-content-center" *ngIf="!this.students">
         <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
     
-    <table mat-table [dataSource]="students" class="mat-elevation-z8 my-4">
-        <ng-container matColumnDef="id">
-            <th mat-header-cell class="text-center" *matHeaderCellDef> No. Estudiante </th>
-            <td mat-cell class="text-center" *matCellDef="let student"> {{student.id}} </td>
-        </ng-container>
-    
+    <table mat-table [dataSource]="students" class="mat-elevation-z8 my-4" *ngIf="this.students">
         <ng-container matColumnDef="name">
             <th mat-header-cell class="text-center" *matHeaderCellDef> Nombre </th>
             <td mat-cell class="text-center" *matCellDef="let student"> {{student | fullName}} </td>
@@ -32,11 +27,11 @@
         <ng-container matColumnDef="detail">
             <th mat-header-cell class="text-center" *matHeaderCellDef> Detalle </th>
             <td mat-cell class="text-center" *matCellDef="let student">
-                <button mat-icon-button>
+                <a [routerLink]="['detail', student.id]" mat-icon-button>
                     <mat-icon>
                         visibility
                     </mat-icon>
-                </button>
+                </a>
             </td>
         </ng-container>
 

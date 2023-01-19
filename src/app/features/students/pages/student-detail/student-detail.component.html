@@ -1,7 +1,14 @@
-<div class="login-background">
-    <div class="container d-flex flex-column bg-white rounded border shadow position-absolute top-50 start-50 translate-middle p-5">
+<div class="container d-flex flex-column justify-content-center mt-3">
+    <div class="d-flex flex-column bg-white rounded border shadow p-5">
         <h1 mat-dialog-title class="text-uppercase text-center mb-5" appTitlesStyle>Perfil del usuario</h1>
-        <div mat-dialog-content class="container">
+
+        <div class="d-flex justify-content-center" *ngIf="!this.student">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <div mat-dialog-content class="container" *ngIf="this.student">
             <div class="d-flex flex-row justify-content-around">
                 <img src="https://avatars.githubusercontent.com/u/14139756?v=4" alt="" style="height: 150px;width: 150px;"/>
                 <div class="">
@@ -45,4 +52,41 @@
             </div>
         </div>
     </div>
+
+    <div class="d-flex flex-column bg-white rounded border shadow p-5 mt-3">
+        <h1 mat-dialog-title class="text-uppercase text-center mb-5" appTitlesStyle>Inscripto en:</h1>
+
+        <div class="d-flex justify-content-center" *ngIf="!this.student">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <table mat-table [dataSource]="this.student.courses" class="mat-elevation-z8 my-4" *ngIf="this.student">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell class="text-center" *matHeaderCellDef> Comisión </th>
+                <td mat-cell class="text-center" *matCellDef="let course"> {{course.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell class="text-center" *matHeaderCellDef> Nombre curso </th>
+                <td mat-cell class="text-center" *matCellDef="let course"> {{course.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="state">
+                <th mat-header-cell class="text-center" *matHeaderCellDef> Estado del curso </th>
+                <td mat-cell class="text-center" *matCellDef="let course"> {{course.state}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="day">
+                <th mat-header-cell class="text-center" *matHeaderCellDef> Días y horarios </th>
+                <td mat-cell class="text-center" *matCellDef="let course"> {{course.day}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+    </div>
+    <a routerLink="/students" mat-raised-button color="warn" class="my-4 w-50 mx-auto">Volver</a>
 </div>

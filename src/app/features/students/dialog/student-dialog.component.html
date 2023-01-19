@@ -79,6 +79,33 @@
                 <option value="false">No</option>
             </select>
         </mat-form-field>
+
+        <mat-form-field appearance="fill" class="mt-5">
+            <mat-label>¿Desea agregar un curso?</mat-label>
+            <select #options (change)="onSelected(options.value)" matNativeControl required >
+                <option value="false">No</option>
+                <option value="true">Si</option>
+            </select>
+        </mat-form-field>
+
+        <form formGroupName="courses" class="d-flex flex-column">
+            <mat-form-field appearance="fill" *ngIf="this.addCourse">
+                <mat-label>Comisión</mat-label>
+                <input type="text" formControlName="id" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="fill" *ngIf="this.addCourse">
+                <mat-label>Nombre del curso</mat-label>
+                <input type="text" formControlName="name" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="fill" *ngIf="this.addCourse">
+                <mat-label>Estado</mat-label>
+                <input type="text" formControlName="state" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="fill" *ngIf="this.addCourse">
+                <mat-label>Día/s</mat-label>
+                <input type="text" formControlName="day" matInput>
+            </mat-form-field>
+        </form>
     </form>
 </div>
 <div mat-dialog-actions>
