@@ -9,10 +9,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { CategoriesDialogComponent } from './features/categories/dialogs/categories-dialog/categories-dialog.component';
+import { CategoriesDashboardComponent } from './features/categories/pages/categories-dashboard/categories-dashboard.component';
+import { ConfirmDialogComponent } from './shared/components/dialogs/confirm-dialog/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CategoriesDialogComponent,
+    CategoriesDashboardComponent
   ],
   imports: [
     BrowserModule,

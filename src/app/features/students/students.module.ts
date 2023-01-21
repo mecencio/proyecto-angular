@@ -1,9 +1,10 @@
+import { ConfirmDialogComponent } from './../../shared/components/dialogs/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { StudentsRoutingModule } from './students-routing.module';
 import { StudentsComponent } from './students.component';
-import { StudentDialogComponent } from './dialog/student-dialog.component';
+import { StudentDialogComponent } from './dialogs/student-dialog/student-dialog.component';
 import { FullNamePipe } from './../../shared/pipes/full-name/full-name.pipe';
 import { MaterialModule } from './../../shared/modules/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,7 +18,8 @@ import { StudentDashboardComponent } from './pages/student-dashboard/student-das
     StudentDialogComponent,
     FullNamePipe,
     StudentDetailComponent,
-    StudentDashboardComponent
+    StudentDashboardComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,

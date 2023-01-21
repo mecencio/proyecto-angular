@@ -1,7 +1,7 @@
-import { Student } from '../../../core/models/student.model';
+import { Student } from '../../../../core/models/student.model';
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -13,7 +13,6 @@ export class StudentDialogComponent {
   public studentForm: FormGroup;
   public titleDialog : String;
   public studentValue : Student;
-  public addCourse : boolean;
 
   constructor(
     private readonly dialogRef : DialogRef, 
@@ -37,21 +36,9 @@ export class StudentDialogComponent {
       password: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       age: ['', [Validators.required]],
-      isActive: [true],
-      courses: this.form.group({
-        id: ['', [Validators.required]],
-        name: ['', [Validators.required]],
-        state: ['', [Validators.required]],
-        day: ['', [Validators.required]],
-      })
+      isActive: [true]
     })
     this.studentForm.patchValue(this.studentValue)
-  }
-
-  onSelected(value : string){
-    this.addCourse = (value == "true");
-    console.log(this.addCourse)
-    console.log(value)
   }
 
   close() {

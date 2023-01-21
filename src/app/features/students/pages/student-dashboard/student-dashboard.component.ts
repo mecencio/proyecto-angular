@@ -1,4 +1,5 @@
-import { StudentDialogComponent } from './../../dialog/student-dialog.component';
+import { ConfirmDialogComponent } from './../../../../shared/components/dialogs/confirm-dialog/confirm-dialog/confirm-dialog.component';
+import { StudentDialogComponent } from '../../dialogs/student-dialog/student-dialog.component';
 import { Student } from './../../../../core/models/student.model';
 import { StudentService } from './../../service/student.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -13,15 +14,15 @@ import { MatDialog } from '@angular/material/dialog';
 export class StudentDashboardComponent implements OnInit, OnDestroy {
   public students : Student[] = [];
   private studentSubscription : Subscription;
-  private addStudentSubscription : Subscription;
-  private editStudentSubscription : Subscription;
   private dialogSubscriptionAddStudent : Subscription;
   private dialogSubscriptionEditStudent : Subscription;
+  private deleteSubscription : Subscription;
 
   displayedColumns = ['name', 'isActive','detail', 'edit', 'delete'];
 
   constructor(
-    private readonly dialogService: MatDialog,
+    private readonly studentDialogService: MatDialog,
+    private confirmDialogService : MatDialog,
     private studentService: StudentService,
     ) { }
 
@@ -36,14 +37,11 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
     if (this.dialogSubscriptionAddStudent != null) {
       this.dialogSubscriptionAddStudent.unsubscribe();
     }
-    if (this.addStudentSubscription != null) {
-      this.addStudentSubscription.unsubscribe();
-    }
-    if (this.editStudentSubscription != null) {
-      this.editStudentSubscription.unsubscribe();
-    }
     if (this.dialogSubscriptionEditStudent != null) {
       this.dialogSubscriptionEditStudent.unsubscribe();
+    }
+    if (this.deleteSubscription != null) {
+      this.deleteSubscription.unsubscribe();
     }
   }
 
@@ -54,16 +52,14 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
   }
 
   public addStudent() {
-    const dialog = this.dialogService.open(StudentDialogComponent, {
+    const dialog = this.studentDialogService.open(StudentDialogComponent, {
       width: '50vw',
       data: {titleDialog: 'Agregar estudiante'}
     })
 
     this.dialogSubscriptionAddStudent = dialog.afterClosed().subscribe((value) => {
       if (value) {
-        const lastId = this.students[this.students.length-1]?.id;
         const newStudent : Student = new Student({
-          id:lastId+1, 
           firstName: value.firstName,
           lastName: value.lastName,
           address: value.address,
@@ -76,22 +72,23 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
           password: value.password,
           phone: value.phone,
           isActive: value.isActive,
-          age: value.age
+          age: value.age,
+          courses: [],
         });
-        this.students = [];
-        this.addStudentSubscription = this.studentService.addStudent(newStudent).subscribe((student) => {
-          this.students.push(student)
-        });
+        this.studentService.addStudent(newStudent)
       }
     })
   }
 
   removeStudent(student : Student) {
-    this.students = this.students.filter(stu => stu.id != student.id);
+    const dialog = this.confirmDialogService.open(ConfirmDialogComponent);
+    this.deleteSubscription = dialog.afterClosed().subscribe((data) => {
+      data && this.studentService.removeStudent(student.id);
+    })
   }
 
   editStudent(student : Student) {
-    const dialog = this.dialogService.open(StudentDialogComponent, {
+    const dialog = this.studentDialogService.open(StudentDialogComponent, {
       width: '50vw',
       data: {studentValue: student, titleDialog: 'Editar estudiante'}
     })
@@ -115,10 +112,7 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
           isActive: value.isActive,
           age: value.age
         });
-        this.students = [];
-        this.editStudentSubscription = this.studentService.editStudent(student.id, newStudent).subscribe((student) =>{
-          this.students.push(student)
-        });
+        this.studentService.editStudent(newStudent);
       }
     })
   }
