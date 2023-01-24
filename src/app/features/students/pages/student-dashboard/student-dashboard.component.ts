@@ -21,7 +21,7 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
   displayedColumns = ['name', 'isActive','detail', 'edit', 'delete'];
 
   constructor(
-    private readonly studentDialogService: MatDialog,
+    public readonly studentDialogService: MatDialog,
     private confirmDialogService : MatDialog,
     private studentService: StudentService,
     ) { }
@@ -75,7 +75,10 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
           age: value.age,
           courses: [],
         });
-        this.studentService.addStudent(newStudent)
+        this.studentService.addStudent(newStudent).then(() => {
+          this.students = [];
+          this.getStudents();
+        })
       }
     })
   }
@@ -83,7 +86,10 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
   removeStudent(student : Student) {
     const dialog = this.confirmDialogService.open(ConfirmDialogComponent);
     this.deleteSubscription = dialog.afterClosed().subscribe((data) => {
-      data && this.studentService.removeStudent(student.id);
+      data && this.studentService.removeStudent(student.id).then(() => {
+        this.students = [];
+        this.getStudents();
+      });
     })
   }
 
@@ -112,7 +118,10 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
           isActive: value.isActive,
           age: value.age
         });
-        this.studentService.editStudent(newStudent);
+        this.studentService.editStudent(newStudent).then(() => {
+          this.students = [];
+          this.getStudents();
+        })
       }
     })
   }

@@ -12,6 +12,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { CategoriesDialogComponent } from './features/categories/dialogs/categories-dialog/categories-dialog.component';
 import { CategoriesDashboardComponent } from './features/categories/pages/categories-dashboard/categories-dashboard.component';
 import { ConfirmDialogComponent } from './shared/components/dialogs/confirm-dialog/confirm-dialog/confirm-dialog.component';
+import { provideAuth,getAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ConfirmDialogComponent } from './shared/components/dialogs/confirm-dial
     HttpClientModule,
     LayoutModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth())
   ],
   providers: [],
   bootstrap: [AppComponent]

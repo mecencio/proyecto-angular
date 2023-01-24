@@ -1,8 +1,9 @@
-import { UsersService } from './../../shared/services/users/users.service';
+import { AuthService } from './services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor (
     private form : FormBuilder,
-    private usersService : UsersService,
+    private authService : AuthService,
     private router: Router
   ) {}
 
@@ -36,13 +37,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    this.loginFormSubscription = this.usersService.getUser(this.loginForm.value.user).subscribe(data => {
-      if ((data.length == 1) && (data[0].password == this.loginForm.value.password)) {
-        localStorage.setItem('user', JSON.stringify(this.loginForm.value));
-        this.router.navigate(['']);
-      } else {
-        this.error = "El usuario o contraseña ingresado son incorrectos";
-      }
-    })
+    const result = this.authService.login(new User({...this.loginForm.value}));
+
+    if(!result) {
+      this.error = 'El usuario o contraseña ingresado son incorrectos';
+    }
+
   }
 }

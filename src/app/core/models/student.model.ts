@@ -16,22 +16,22 @@ export class Student {
     age : number;
     courses : string[];
 
-    constructor(user: any) {
-        this.id = user.id;
-        this.firstName = user.firstName;
-        this.lastName = user.lastName;
-        this.address = user.address;
-        this.city = user.city;
-        this.province = user.province;
-        this.country = user.country;
-        this.gender = user.gender;
-        this.email = user.email;
-        this.user = user.user;
-        this.password = user.password;
-        this.phone = user.phone;
-        this.isActive = user.isActive;
-        this.age = user.age;
-        this.courses = user.courses;
+    constructor(student: any) {
+        this.id = student.id;
+        this.firstName = student.firstName;
+        this.lastName = student.lastName;
+        this.address = student.address;
+        this.city = student.city;
+        this.province = student.province;
+        this.country = student.country;
+        this.gender = student.gender;
+        this.email = student.email;
+        this.user = student.student;
+        this.password = student.password;
+        this.phone = student.phone;
+        this.isActive = student.isActive;
+        this.age = student.age;
+        this.courses = student.courses;
     }
 
 }
