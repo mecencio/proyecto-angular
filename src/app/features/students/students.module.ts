@@ -1,4 +1,3 @@
-import { ConfirmDialogComponent } from './../../shared/components/dialogs/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,6 +9,7 @@ import { MaterialModule } from './../../shared/modules/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StudentDetailComponent } from './pages/student-detail/student-detail.component';
 import { StudentDashboardComponent } from './pages/student-dashboard/student-dashboard.component';
+import { ClassesDialogComponent } from './dialogs/classes-dialog/classes-dialog.component';
 
 
 @NgModule({
@@ -19,7 +19,7 @@ import { StudentDashboardComponent } from './pages/student-dashboard/student-das
     FullNamePipe,
     StudentDetailComponent,
     StudentDashboardComponent,
-    ConfirmDialogComponent
+    ClassesDialogComponent
   ],
   imports: [
     CommonModule,

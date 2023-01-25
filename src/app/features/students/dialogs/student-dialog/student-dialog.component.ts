@@ -1,6 +1,6 @@
 import { Student } from '../../../../core/models/student.model';
 import { DialogRef } from '@angular/cdk/dialog';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -9,7 +9,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './student-dialog.component.html',
   styleUrls: []
 })
-export class StudentDialogComponent {
+export class StudentDialogComponent implements OnInit {
   public studentForm: FormGroup;
   public titleDialog : String;
   public studentValue : Student;

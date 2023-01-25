@@ -1,3 +1,5 @@
+import { Class } from "./class.model";
+
 export class Student {
 
     id: number;
@@ -14,7 +16,7 @@ export class Student {
     phone: string;
     isActive: boolean;
     age : number;
-    courses : string[];
+    courses : Class[];
 
     constructor(student: any) {
         this.id = student.id;
@@ -26,7 +28,7 @@ export class Student {
         this.country = student.country;
         this.gender = student.gender;
         this.email = student.email;
-        this.user = student.student;
+        this.user = student.user;
         this.password = student.password;
         this.phone = student.phone;
         this.isActive = student.isActive;

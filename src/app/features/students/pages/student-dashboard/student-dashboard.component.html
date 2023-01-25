@@ -5,13 +5,13 @@
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
-    
+
     <table mat-table [dataSource]="students" class="mat-elevation-z8 my-4" *ngIf="this.students">
         <ng-container matColumnDef="name">
             <th mat-header-cell class="text-center" *matHeaderCellDef> Nombre </th>
             <td mat-cell class="text-center" *matCellDef="let student"> {{student | fullName}} </td>
         </ng-container>
-    
+
         <ng-container matColumnDef="isActive">
             <th mat-header-cell class="text-center" *matHeaderCellDef> Estudiante activo </th>
             <td mat-cell class="text-center" *matCellDef="let student">
@@ -45,7 +45,7 @@
                 </button>
             </td>
         </ng-container>
-    
+
         <ng-container matColumnDef="delete">
             <th mat-header-cell class="text-center" *matHeaderCellDef> Eliminar </th>
             <td mat-cell class="text-center" *matCellDef="let student">
@@ -56,11 +56,11 @@
                 </button>
             </td>
         </ng-container>
-    
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    
+
     <button (click)="addStudent()" mat-raised-button color="primary" class="my-2 w-100 text-uppercase">
         <mat-icon>add</mat-icon>
         Agregar alumno

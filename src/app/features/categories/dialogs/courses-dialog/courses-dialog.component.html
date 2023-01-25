@@ -1,7 +1,12 @@
 <h1 mat-dialog-title class="text-uppercase text-center" appTitlesStyle>{{data?.titleDialog}}</h1>
 <div mat-dialog-content class="container w-100">
-    <form [formGroup]="categoriesForm" class="d-flex flex-column">
-        <h2>Datos de la materia</h2>
+    <form [formGroup]="coursesForm" class="d-flex flex-column">
+        <h2>Datos del curso</h2>
+
+        <mat-form-field appearance="fill" class="pe-2">
+            <mat-label>ID: </mat-label>
+            <input type="text" formControlName="id" matInput>
+        </mat-form-field>
 
         <mat-form-field appearance="fill" class="pe-2">
             <mat-label>Nombre: </mat-label>
@@ -11,6 +16,6 @@
     </form>
 </div>
 <div mat-dialog-actions>
-    <button color="primary" mat-button [mat-dialog-close]="categoriesForm.value">Guardar</button>
+    <button color="primary" mat-button [mat-dialog-close]="coursesForm.value">Guardar</button>
     <button color="warn" mat-button (click)="close()">Cancelar</button>
 </div>

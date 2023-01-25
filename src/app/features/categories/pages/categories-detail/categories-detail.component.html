@@ -1,0 +1,82 @@
+<div class="container d-flex flex-column justify-content-center mt-3" *ngIf="!this.error">
+    <div class="d-flex flex-column bg-white rounded border shadow p-5">
+        <h1 mat-dialog-title class="text-uppercase text-center mb-5" appTitlesStyle>Detalle de la categoría</h1>
+
+        <div class="d-flex justify-content-center" *ngIf="!this.category">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <div mat-dialog-content class="container" *ngIf="this.category">
+            <div class="d-flex flex-row justify-content-around">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbLUyIEy-1YbqnDffFG6YpjkpOv1hsRq9uY9GToKiRaNKeDh3DRFT2NVSuPK2XKiilvn4&usqp=CAU" alt="" style="height: 150px;width: 150px;"/>
+                <div class="">
+                    <mat-form-field appearance="fill" style="min-width: 40vw;" class="me-2">
+                        <mat-label>Nombre de la categoría</mat-label>
+                        <input matInput disabled [value]="this.category.title">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column bg-white rounded border shadow p-5 mt-3">
+        <h1 mat-dialog-title class="text-uppercase text-center mb-5" appTitlesStyle>Cursos relacionados:</h1>
+
+        <div class="d-flex justify-content-center" *ngIf="!this.category">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <table mat-table [dataSource]="this.category.courses" class="mat-elevation-z8 my-4" *ngIf="this.category">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell class="text-center" *matHeaderCellDef> ID </th>
+                <td mat-cell class="text-center" *matCellDef="let course"> {{course.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+                <th mat-header-cell class="text-center" *matHeaderCellDef> Nombre del Curso </th>
+                <td mat-cell class="text-center" *matCellDef="let course"> {{course.title}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell class="text-center" *matHeaderCellDef> Editar </th>
+                <td mat-cell class="text-center" *matCellDef="let course">
+                    <button (click)="editCourse(course)" mat-icon-button>
+                        <mat-icon>
+                            edit
+                        </mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell class="text-center" *matHeaderCellDef> Eliminar </th>
+                <td mat-cell class="text-center" *matCellDef="let course">
+                    <button (click)="removeCourse(course)" mat-icon-button>
+                        <mat-icon color="warn">
+                            delete
+                        </mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <button (click)="addCourse()" mat-raised-button color="primary" class="my-2 w-100 text-uppercase">
+        <mat-icon>add</mat-icon>
+        Agregar Curso
+    </button>
+    <a routerLink="/categories" mat-raised-button color="warn" class="my-4 w-100 mx-auto">Volver</a>
+</div>
+<div *ngIf="this.error" class="alert alert-danger m-2">
+    <h1 class="text-center">Se ha producido un error</h1>
+    <p class="text-center">No se ha encontrado la categoría</p>
+    <div class="d-flex justify-content-center">
+        <a routerLink="/categories" mat-raised-button color="warn" class="my-4 w-50">Volver</a>
+    </div>
+</div>

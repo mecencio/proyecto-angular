@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-student-dashboard',
   templateUrl: './student-dashboard.component.html',
-  styleUrls: ['./student-dashboard.component.css']
+  styleUrls: []
 })
 export class StudentDashboardComponent implements OnInit, OnDestroy {
   public students : Student[] = [];
@@ -59,22 +59,7 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
 
     this.dialogSubscriptionAddStudent = dialog.afterClosed().subscribe((value) => {
       if (value) {
-        const newStudent : Student = new Student({
-          firstName: value.firstName,
-          lastName: value.lastName,
-          address: value.address,
-          city: value.city,
-          province: value.province,
-          country: value.country,
-          gender: value.gender,
-          email: value.email,
-          user: value.user,
-          password: value.password,
-          phone: value.phone,
-          isActive: value.isActive,
-          age: value.age,
-          courses: [],
-        });
+        const newStudent : Student = new Student({...value, courses: []});
         this.studentService.addStudent(newStudent).then(() => {
           this.students = [];
           this.getStudents();
@@ -101,23 +86,7 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
 
     this.dialogSubscriptionEditStudent = dialog.afterClosed().subscribe((value) => {
       if (value) {
-        const lastId = this.students[this.students.length-1]?.id;
-        const newStudent : Student = new Student({
-          id: student.id, 
-          firstName: value.firstName,
-          lastName: value.lastName,
-          address: value.address,
-          city: value.city,
-          province: value.province,
-          country: value.country,
-          gender: value.gender,
-          email: value.email,
-          user: value.user,
-          password: value.password,
-          phone: value.phone,
-          isActive: value.isActive,
-          age: value.age
-        });
+        const newStudent : Student = new Student({id: student.id, ...value, courses: student.courses});
         this.studentService.editStudent(newStudent).then(() => {
           this.students = [];
           this.getStudents();

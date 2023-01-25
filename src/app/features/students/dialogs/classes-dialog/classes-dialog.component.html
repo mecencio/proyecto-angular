@@ -1,0 +1,35 @@
+<h1 mat-dialog-title class="text-uppercase text-center" appTitlesStyle>{{data?.titleDialog}}</h1>
+<div mat-dialog-content class="container w-100">
+    <form [formGroup]="classesForm" class="d-flex flex-column">
+        <h2>Datos de la materia</h2>
+
+        <mat-form-field appearance="fill" class="pe-2">
+            <mat-label>N° Comisión: </mat-label>
+            <input type="text" formControlName="id" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="pe-2">
+            <mat-label>Nombre: </mat-label>
+            <input type="text" formControlName="title" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Estado: </mat-label>
+            <mat-select formControlName="state" matNativeControl required>
+                <mat-option *ngFor="let option of options" [value]="option.value">
+                    {{option.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="pe-2">
+            <mat-label>Días y horarios: </mat-label>
+            <input type="text" formControlName="days" matInput>
+        </mat-form-field>
+
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button color="primary" mat-button [mat-dialog-close]="classesForm.value">Guardar</button>
+    <button color="warn" mat-button (click)="close()">Cancelar</button>
+</div>
