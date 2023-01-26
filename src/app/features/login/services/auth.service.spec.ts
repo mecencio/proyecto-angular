@@ -1,36 +1,43 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { User } from './../../../core/models/user.model';
+import { AuthService } from 'src/app/features/login/services/auth.service';
 import { TestBed } from '@angular/core/testing';
-import { RoutingModule } from 'src/app/app-routing.module'
 
-import { AuthService } from './auth.service';
-
-fdescribe('AuthService', () => {
+fdescribe('ServicesService', () => {
     let service: AuthService;
-    let httpController: HttpTestingController;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [
-                HttpClientTestingModule,
-                RoutingModule
-            ]
-        });
+        TestBed.configureTestingModule({});
         service = TestBed.inject(AuthService);
-        httpController = TestBed.inject(HttpTestingController);
     });
 
-    it('should be created', () => {
+    it('Should be created', () => {
         expect(service).toBeTruthy();
     });
 
-    it('Test servicio logout exitoso', () => {
-        localStorage.setItem('user', '{"user":"example","password":"example"}')
-        const response = service.logout();
-        expect(response).toEqual(true);
+    it('Should deny login', () => {
+        localStorage.clear()
+        const response = service.login(new User({user:'testDenyLogin', mail:'test@mail.com', password:'', role:'Admin'}));
+        expect(response).toBeFalse();
     })
 
-    it('Test servicio logout fallido', () => {
-        const response = service.logout();
-        expect(response).toEqual(false);
+    it('Should allow login', () => {
+        localStorage.clear()
+        service.register(new User({user:'testAllowLogin', mail:'test@mail.com', password:'', role:'Admin'}));
+        service.logout();
+
+        const response = service.login(new User({user:'testAllowLogin', mail:'test@mail.com', password:'', role:'Admin'}));
+        expect(response).toBeTrue();
+    })
+
+    it('Should logout successfully', () => {
+        service.logout();
+        expect(localStorage['user']?true:false).toBeFalse();
+    })
+
+    it('Should get the name correctly', () => {
+        localStorage.clear()
+        service.register(new User({user:'testGetName', mail:'test@mail.com', password:'', role:'Admin'}));
+        const name = service.getUsername();
+        expect(name).toEqual('testGetName')
     })
 });
