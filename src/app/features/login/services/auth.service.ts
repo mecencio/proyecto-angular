@@ -1,6 +1,8 @@
+import { logout, login } from './../../../store/auth/auth.actions';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { User } from 'src/app/core/models/user.model';
 
 @Injectable({
@@ -10,6 +12,7 @@ export class AuthService {
 
   constructor(
     private router : Router,
+    private readonly store: Store
     ) { }
 
   public register(newUser : User) {
@@ -20,9 +23,9 @@ export class AuthService {
       user = users?.filter(u => u.user == newUser.user);
     }
 
-    console.log(user.length)
     if (user.length == 0) {
       users.push(newUser);
+      this.store.dispatch(login({user: newUser}))
       localStorage.setItem("users", JSON.stringify(users));
       localStorage.setItem("user", JSON.stringify(newUser));
       this.router.navigate(['/']);
@@ -50,6 +53,7 @@ export class AuthService {
     }
 
     if ((user.length == 1) && (user[0].password === logUser.password)) {
+      this.store.dispatch(login({user: user[0]}))
       localStorage.setItem("user", JSON.stringify(user));
       this.router.navigate(['/']);
       return true;
@@ -60,7 +64,7 @@ export class AuthService {
 
   public logout() : boolean {
     if(localStorage.getItem('user')) {
-      localStorage.removeItem('user');
+      this.store.dispatch(logout())
       this.router.navigate(['login']);
       return true;
     } else return false;

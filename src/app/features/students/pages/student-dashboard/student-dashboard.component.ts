@@ -1,3 +1,5 @@
+import { selectStudents } from './../../../../store/students/students-store/students-store.selectors';
+import { Store } from '@ngrx/store';
 import { ConfirmDialogComponent } from './../../../../shared/components/dialogs/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { StudentDialogComponent } from '../../dialogs/student-dialog/student-dialog.component';
 import { Student } from './../../../../core/models/student.model';
@@ -5,6 +7,7 @@ import { StudentService } from './../../service/student.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { loadStudentsStores } from 'src/app/store/students/students-store/students-store.actions';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -24,6 +27,7 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
     public readonly studentDialogService: MatDialog,
     private confirmDialogService : MatDialog,
     private studentService: StudentService,
+    private store : Store,
     ) { }
 
   ngOnInit(): void {
@@ -46,7 +50,8 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
   }
 
   public getStudents() {
-    this.studentSubscription = this.studentService.getStudents().subscribe((student) => {
+    this.store.dispatch(loadStudentsStores());
+    this.studentSubscription = this.store.select(selectStudents).subscribe((student) => {
       this.students = student;
     });
   }
